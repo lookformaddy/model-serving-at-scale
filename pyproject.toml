@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "model-serving-at-scale"
+version = "0.1.0"
+description = "Model serving at scale: dynamic batching, canary releases with auto-rollback, shadow mode, deterministic A/B routing, version registry, latency metrics, deadlines and load-shedding."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Model Serving Contributors" }]
+dependencies = []
+
+[project.optional-dependencies]
+api = ["fastapi>=0.110", "uvicorn[standard]>=0.29", "pydantic>=2.6"]
+dev = ["pytest>=8.0", "httpx>=0.27"]
+
+[project.scripts]
+model-serving = "model_serving.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
